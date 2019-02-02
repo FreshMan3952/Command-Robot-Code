@@ -118,7 +118,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		Scheduler.getInstance().add(new MoveToWall());
+		Scheduler.getInstance().run();
 		
 	}
 

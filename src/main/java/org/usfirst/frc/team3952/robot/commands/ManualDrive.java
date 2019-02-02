@@ -23,11 +23,10 @@ public class ManualDrive extends Command {
         
         Robot.drive.drive(hor, lat, rot);
         
-        if (Robot.mainController.clawDeploy()){
-            RobotMap.clawDeploy.setAngle(170);
-        }else {
+        if (Robot.mainController.clawDeploy())
             RobotMap.clawDeploy.setAngle(0);
-        }
+        else 
+            RobotMap.clawDeploy.setAngle(90);
 
     }
 
