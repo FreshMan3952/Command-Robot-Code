@@ -50,7 +50,7 @@ public class RobotMap {
 	public static Encoder rearLeftEncoder;
 	public static Encoder rearRightEncoder;
 	public static ADXRS450_Gyro gyro;
-	public static PWMTalonSRX ladder;
+	public static PWMVictorSPX ladder;
 	public static Encoder ladderEncoder;
 	public static DigitalInput ladderTopLimit;
 	public static DigitalInput ladderBottomLimit;
@@ -88,7 +88,7 @@ public class RobotMap {
 
 
 		gyro = new ADXRS450_Gyro();
-		ladder = new PWMTalonSRX(LADDER_PORT);
+		ladder = new PWMVictorSPX(LADDER_PORT);
 		ladderEncoder = new Encoder(LADDER_ENCODER_PORT_1, LADDER_ENCODER_PORT_2, false, Encoder.EncodingType.k2X);
 		ballSolenoid = new DoubleSolenoid(BALL_SOLENOID_PORT_1, BALL_SOLENOID_PORT_2);
 		discSolenoid = new DoubleSolenoid(DISC_SOLENOID_PORT_1, DISC_SOLENOID_PORT_2);
