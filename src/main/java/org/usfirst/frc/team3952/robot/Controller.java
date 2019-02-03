@@ -16,7 +16,7 @@ public class Controller {
     public Joystick joystick;
 
     // MAP(manualExtendLadder, manualRetractLadder, ball drop, ball retract, grab, release)
-    final static int[] SIDEWINDER_MAP = {3, 4, 1, 2, 7, 6, 7};
+    final static int[] SIDEWINDER_MAP = {3, 4, 1, 2, 7, 6, 8};
 
     // MAP(literally every level of the ladder)
     // used to be known as the BAD_CONTROLLER
@@ -55,12 +55,7 @@ public class Controller {
         return joystick.getRawButton(currentController[1]);
     }
 
-    public boolean shootBallHolder() {
-        return joystick.getRawButton(currentController[2]);
-    }
-
-    public boolean retractBallHolder() {
-        return joystick.getRawButton(currentController[3]);
+    
     }
 
     public boolean grabDisc() {

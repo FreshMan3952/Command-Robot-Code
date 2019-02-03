@@ -31,10 +31,9 @@ public class RobotMap {
 	public static final int LADDER_BOTTOM_LIMIT_PORT = 7;
 
 	//PNEUMATIC BOARD (PCM)
-	public static final int BALL_SOLENOID_PORT_1 = 0;
-	public static final int BALL_SOLENOID_PORT_2 = 1;
-	public static final int DISC_SOLENOID_PORT_1 = 2;
-	public static final int DISC_SOLENOID_PORT_2 = 3;
+	
+	public static final int DISC_SOLENOID_PORT_1 = 0;
+	public static final int DISC_SOLENOID_PORT_2 = 1;
 	
 	//ANALOG IN
 	public static final int QTI_SENSOR_PORT = 0;
@@ -90,7 +89,7 @@ public class RobotMap {
 		gyro = new ADXRS450_Gyro();
 		ladder = new PWMVictorSPX(LADDER_PORT);
 		ladderEncoder = new Encoder(LADDER_ENCODER_PORT_1, LADDER_ENCODER_PORT_2, false, Encoder.EncodingType.k2X);
-		ballSolenoid = new DoubleSolenoid(BALL_SOLENOID_PORT_1, BALL_SOLENOID_PORT_2);
+		
 		discSolenoid = new DoubleSolenoid(DISC_SOLENOID_PORT_1, DISC_SOLENOID_PORT_2);
 		qtiSensor = new AnalogInput(QTI_SENSOR_PORT);
 		ultrasonicSensor = new AnalogInput(ULTRASONIC_PORT);

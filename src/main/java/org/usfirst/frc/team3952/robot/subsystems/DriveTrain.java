@@ -21,7 +21,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void drive(double hor, double lat, double rot) {
-    	drive.driveCartesian(lat, hor, rot);
+		drive.driveCartesian(lat, hor, rot);
     }
     
     public void stop() {

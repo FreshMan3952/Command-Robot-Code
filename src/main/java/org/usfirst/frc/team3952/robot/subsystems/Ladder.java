@@ -11,6 +11,8 @@ public class Ladder extends Subsystem {
 	public static final double LADDER_EXTENDING_SPEED = 0.65;
 	public static final double LADDER_RETRACTING_SPEED = 0.4;
 		
+	
+
 	public Encoder encoder = RobotMap.ladderEncoder;
 	
 	
