@@ -55,12 +55,7 @@ public class Controller {
         return joystick.getRawButton(currentController[1]);
     }
 
-    public boolean shootBallHolder() {
-        return joystick.getRawButton(currentController[2]);
-    }
-
-    public boolean retractBallHolder() {
-        return joystick.getRawButton(currentController[3]);
+    
     }
 
     public boolean grabDisc() {

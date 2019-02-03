@@ -22,7 +22,6 @@ public class ManualDrive extends Command {
         double rot = Robot.mainController.getRotation();
         
         Robot.drive.drive(hor, lat, rot);
-        System.out.println(RobotMap.frontLeftWheel.get());
         
         if (Robot.mainController.clawDeploy())
             RobotMap.clawDeploy.setAngle(0);

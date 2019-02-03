@@ -22,7 +22,7 @@ public class DiscHolder extends Subsystem {
             System.out.println(piston.get());
             extended = true;
         }
-        //stop();
+       
     }
 
     public void retract() {
@@ -31,7 +31,7 @@ public class DiscHolder extends Subsystem {
             piston.set(DoubleSolenoid.Value.kReverse);
             extended = false;
         }
-        //stop();
+        
     }
 
     public void stop() {
