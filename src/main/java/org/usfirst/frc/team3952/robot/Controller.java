@@ -15,7 +15,7 @@ public class Controller {
 
     public Joystick joystick;
 
-    // MAP(manualExtendLadder, manualRetractLadder, ball drop, ball retract, grab, release)
+    // MAP(manualExtendLadder, manualRetractLadder, ball drop, ball retract, grab, release, claw deploy)
     final static int[] SIDEWINDER_MAP = {3, 4, 1, 2, 7, 6, 7};
 
     // MAP(literally every level of the ladder)
