@@ -90,8 +90,8 @@ public class RobotMap {
 		gyro = new ADXRS450_Gyro();
 		ladder = new PWMTalonSRX(LADDER_PORT);
 		ladderEncoder = new Encoder(LADDER_ENCODER_PORT_1, LADDER_ENCODER_PORT_2, false, Encoder.EncodingType.k2X);
-		ballSolenoid = new DoubleSolenoid(BALL_SOLENOID_PORT_1, BALL_SOLENOID_PORT_2);
-		discSolenoid = new DoubleSolenoid(DISC_SOLENOID_PORT_1, DISC_SOLENOID_PORT_2);
+		ballSolenoid = new DoubleSolenoid(2, 3);
+		discSolenoid = new DoubleSolenoid(BALL_SOLENOID_PORT_1, BALL_SOLENOID_PORT_2);
 		qtiSensor = new AnalogInput(QTI_SENSOR_PORT);
 		ultrasonicSensor = new AnalogInput(ULTRASONIC_PORT);
 	}

@@ -22,6 +22,7 @@ public class DriveToLine extends Command
     {
         //Change 0.5 for faster drive (but not too fast to skip line)
         Robot.drive.drive(0, 0.5, 0);
+        System.out.println(sensor.getValue());
     }
 
     protected boolean isFinished()
