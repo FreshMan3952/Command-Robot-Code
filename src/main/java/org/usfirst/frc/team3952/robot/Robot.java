@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import org.usfirst.frc.team3952.robot.subsystems.BallHolder;
+
 import org.usfirst.frc.team3952.robot.subsystems.DiscHolder;
 import org.usfirst.frc.team3952.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3952.robot.subsystems.Ladder;
@@ -19,7 +19,7 @@ public class Robot extends TimedRobot {
 	public static Controller ladderController;
 	public static DriveTrain drive;
 	public static Ladder ladder;
-	public static BallHolder ballHolder;
+	
 	public static DiscHolder discHolder;
 	public static NetworkTableInstance ntinst;
 	public static NetworkTable ntable;
@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
 		ladderController = new Controller(new Joystick(1), false);
 		drive = new DriveTrain();
 		ladder = new Ladder();
-		ballHolder = new BallHolder();
+		
 		discHolder = new DiscHolder();
 		ntinst = NetworkTableInstance.getDefault();
 		ntable = ntinst.getTable("datatable");
@@ -119,6 +119,10 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		Scheduler.getInstance().run();
+		if (Robot.mainController.clawDeploy())
+            RobotMap.clawDeploy.setAngle(0);
+        else 
+            RobotMap.clawDeploy.setAngle(90);
 		
 	}
 
@@ -138,7 +142,6 @@ public class Robot extends TimedRobot {
 	public static boolean idle() {
 		return drive.getCurrentCommandName().equals(drive.getDefaultCommandName()) && 
 			   ladder.getCurrentCommandName().equals(ladder.getDefaultCommandName()) && 
-			   ballHolder.getCurrentCommandName().equals(ballHolder.getDefaultCommandName()) &&
 			   discHolder.getCurrentCommandName().equals(discHolder.getDefaultCommandName());
 	}
 }
