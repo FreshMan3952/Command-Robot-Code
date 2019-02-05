@@ -16,9 +16,9 @@ public class ManualDiscHolder extends Command {
     double rotateBy = 0;
 
     protected void execute() {
-        if(Robot.mainController.releaseDisc())
+        if(Robot.subController.releaseDisc())
             Robot.discHolder.shoot();
-        else if(Robot.mainController.grabDisc())
+        else if(Robot.subController.grabDisc())
             Robot.discHolder.retract();
         else
             Robot.discHolder.stop();

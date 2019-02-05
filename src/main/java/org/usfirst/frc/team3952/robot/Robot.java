@@ -16,7 +16,7 @@ import org.usfirst.frc.team3952.robot.commands.*;
 
 public class Robot extends TimedRobot {
 	public static Controller mainController;
-	public static Controller ladderController;
+	public static SubController subController;
 	public static DriveTrain drive;
 	public static Ladder ladder;
 	
@@ -37,8 +37,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		mainController = new Controller(new Joystick(0), true);
-		ladderController = new Controller(new Joystick(1), false);
+		mainController = new Controller(new Joystick(0));
+		subController = new SubController(new Joystick(1));
 		drive = new DriveTrain();
 		ladder = new Ladder();
 		
