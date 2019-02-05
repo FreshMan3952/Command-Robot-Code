@@ -39,10 +39,10 @@ public class RobotMap {
 	public static final int QTI_SENSOR_PORT = 0;
 	public static final int ULTRASONIC_PORT = 1;
 	
-	public static Spark frontLeftWheel;
-	public static Spark frontRightWheel;
-	public static Spark rearLeftWheel;
-	public static Spark rearRightWheel;
+	public static Talon frontLeftWheel;
+	public static Talon frontRightWheel;
+	public static Talon rearLeftWheel;
+	public static Talon rearRightWheel;
 	public static MecanumDrive drive;
 	public static Encoder frontLeftEncoder;
 	public static Encoder frontRightEncoder;
@@ -62,10 +62,10 @@ public class RobotMap {
 	
 	
 	public static void init() {
-		frontLeftWheel = new Spark(FRONT_LEFT_WHEEL_PORT);
-		frontRightWheel = new Spark(FRONT_RIGHT_WHEEL_PORT);
-		rearLeftWheel = new Spark(REAR_LEFT_WHEEL_PORT);
-		rearRightWheel = new Spark(REAR_RIGHT_WHEEL_PORT);
+		frontLeftWheel = new Talon(FRONT_LEFT_WHEEL_PORT);
+		frontRightWheel = new Talon(FRONT_RIGHT_WHEEL_PORT);
+		rearLeftWheel = new Talon(REAR_LEFT_WHEEL_PORT);
+		rearRightWheel = new Talon(REAR_RIGHT_WHEEL_PORT);
 		drive = new MecanumDrive(frontLeftWheel, frontRightWheel, rearLeftWheel, rearRightWheel);
 		clawDeploy = new Servo(ROBOT_CLAW_ENABLER_PORT);
 

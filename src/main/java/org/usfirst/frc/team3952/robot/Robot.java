@@ -119,10 +119,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		Scheduler.getInstance().run();
-		if (Robot.mainController.clawDeploy())
-            RobotMap.clawDeploy.setAngle(0);
-        else 
-            RobotMap.clawDeploy.setAngle(90);
 		
 	}
 
