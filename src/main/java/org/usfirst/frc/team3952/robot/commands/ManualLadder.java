@@ -17,23 +17,23 @@ public class ManualLadder extends Command {
     protected void initialize() {}
 
     protected void execute() {
-    	if(Robot.mainController.extendLadder()) {
+    	if(Robot.subController.extendLadder()) {
 			Robot.ladder.extend();
-        } else if(Robot.ladderController.retractLadder()) {
+        } else if(Robot.subController.retractLadder()) {
 			Robot.ladder.retract();
 		} else {
 			Robot.ladder.stop();
         }
         
         //change 5 for levels, if you do change the Controller config too
-        for(int i = 0; i < 5; i++)
+        /*for(int i = 0; i < 5; i++)
         {
             if(Robot.mainController.goToLadder(i+1) && !isMoving)
             {
                 Scheduler.getInstance().add(new MoveLadderToPos(i));
                 break;
             }
-        }
+        }*/
     }
 
     protected boolean isFinished() {

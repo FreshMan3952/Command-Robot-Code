@@ -18,18 +18,14 @@ public class Controller {
     // MAP(manualExtendLadder, manualRetractLadder, ball drop, ball retract, grab, release)
     final static int[] SIDEWINDER_MAP = {3, 4, 1, 2, 7, 6, 8};
 
-    // MAP(literally every level of the ladder)
-    // used to be known as the BAD_CONTROLLER
-    final static int[] LUCAS_CONTROLLER = {1, 2, 3, 4, 5};
+   
 
     int[] currentController;
 
-    public Controller(Joystick joystick, boolean isMain) {
+    public Controller(Joystick joystick) {
         this.joystick = joystick;
-        if(isMain)
-            currentController = SIDEWINDER_MAP;
-        else
-            currentController = LUCAS_CONTROLLER;
+        currentController = SIDEWINDER_MAP;
+        
     }
 
     public double getHorizontalMovement() {
@@ -47,33 +43,6 @@ public class Controller {
         return Math.abs(t) >= deadzoneT ? kT * Math.signum(t) * (Math.log(Math.abs(t) + 1 - deadzoneT) + cT) : 0;
     }
 
-    public boolean extendLadder() {
-        return joystick.getRawButton(currentController[0]);
-    }
-
-    public boolean retractLadder() {
-        return joystick.getRawButton(currentController[1]);
-    }
-
-    
-    }
-
-    public boolean grabDisc() {
-        return joystick.getRawButton(currentController[4]);
-    }
-
-    public boolean releaseDisc() {
-        return joystick.getRawButton(currentController[5]);
-    }
-
-    public boolean clawDeploy(){
-        return joystick.getRawButton(currentController[6]);
-    }
-    //For the bad/Lucas controller
-    public boolean goToLadder(int level)
-    {
-        return joystick.getRawButton(level);
-    }
 
     
 }
