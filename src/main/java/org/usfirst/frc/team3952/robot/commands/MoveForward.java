@@ -1,13 +1,21 @@
 package org.usfirst.frc.team3952.robot.commands;
 
-import org.usfirst.frc.team3952.robot.Robot;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.*;
 
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team3952.robot.*;
 
 public class MoveForward extends Command {
+	public static final double DELTA = 0.01;
+	public static final double SPEED = 0.3;
+	public static final double CORRECTION = -0.015;
+	
 	public double initialDistance;
 	public double distance;
 	public boolean finished;
+
+	public Encoder left = Robot.drive.frontLeft;
+	public Encoder right = Robot.drive.frontRight;
 	
 	public MoveForward(double distance) {
 		requires(Robot.drive);
@@ -15,28 +23,33 @@ public class MoveForward extends Command {
 		this.distance = distance;
 	}
 
+	@Override
     protected void initialize() {
-    	initialDistance = (Robot.drive.frontLeft.getDistance() + Robot.drive.frontRight.getDistance()) / 2;
+    	initialDistance = (left.getDistance() + right.getDistance()) / 2;
     }
     
+	@Override
     protected void execute() {
-    	double currentDistance = (Robot.drive.frontLeft.getDistance() + Robot.drive.frontRight.getDistance()) / 2;
-    	if(currentDistance >= initialDistance + distance - 0.01) {
+    	double currentDistance = (left.getDistance() + right.getDistance()) / 2;
+    	if(currentDistance >= initialDistance + distance - DELTA) {
     		Robot.drive.stop();
     		finished = true;
     	} else {
-    		Robot.drive.drive(0, 0.3, -0.015);
+    		Robot.drive.drive(0, SPEED, CORRECTION);
 		}		
     }
     
+	@Override
     protected boolean isFinished() {
         return finished;
     }
     
+	@Override
     protected void end() {
     	Robot.drive.stop();
     }
     
+	@Override
     protected void interrupted() {
     	Robot.drive.stop();
     }

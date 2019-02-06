@@ -1,23 +1,18 @@
 package org.usfirst.frc.team3952.robot.commands;
 
-import org.usfirst.frc.team3952.robot.Robot;
-import org.usfirst.frc.team3952.robot.RobotMap;
+import edu.wpi.first.wpilibj.command.*;
 
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team3952.robot.subsystems.*;
+import org.usfirst.frc.team3952.robot.*;
+
 public class MoveLadderToPos extends Command {
     public static final double TIMEOUT = 8.0;
-
-    //TODO edit values for real positions (after calibration?)
+    //TODO: edit
     public static final int[] POSITIONS = new int[] {200, 300, 400, 500, 600, 700};
+    public static final double DELTA = 0.2;
 
-    //go to
     public double pos;
-    //true: UP, false: DOWN
     public boolean dir;
     public int diff;
-
-    private boolean finished = false;
 
     public MoveLadderToPos(int pos) {
         requires(Robot.ladder);
@@ -26,36 +21,40 @@ public class MoveLadderToPos extends Command {
         this.pos = POSITIONS[pos];
     }
 
+    @Override
     protected void initialize() {
         dir = (pos - Robot.ladder.encoder.getDistance()) > 0;
     }
 
+    @Override
     protected void execute() {
-        if(dir)
+        if(dir) {
             Robot.ladder.extend();
-        else
+        } else {
             Robot.ladder.retract();
-        //just in case it runs too fast for us
+        }
         dir = (pos - Robot.ladder.encoder.getDistance()) > 0;
 
        
     }
 
+    @Override
     protected boolean isFinished() {
-        if(RobotMap.ladderTopLimit.get() || RobotMap.ladderBottomLimit.get())
+        if(RobotMap.ladderTopLimit.get() || RobotMap.ladderBottomLimit.get()) {
             return true;
-        if(Math.abs(pos - Robot.ladder.encoder.getDistance()) < 0.2)
-        {
-            ManualLadder.isMoving = false;
+        }
+        if(Math.abs(pos - Robot.ladder.encoder.getDistance()) < DELTA) {
             return true;
         }
         return false;
     }
 
+    @Override
     protected void end() {
         Robot.ladder.stop();
     }
 
+    @Override
     protected void interrupted() {
         Robot.ladder.stop();
     }

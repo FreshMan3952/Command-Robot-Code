@@ -1,37 +1,32 @@
 package org.usfirst.frc.team3952.robot.subsystems;
 
-import org.usfirst.frc.team3952.robot.RobotMap;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.*;
+
+import org.usfirst.frc.team3952.robot.*;
 import org.usfirst.frc.team3952.robot.commands.*;
 
-import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.command.Subsystem;
+public class PneumaticsSystem extends Subsystem {
+    public DoubleSolenoid piston = RobotMap.discSolenoid;
 
-public class DiscHolder extends Subsystem {	
-	private DoubleSolenoid piston = RobotMap.discSolenoid;
-	
-	public boolean extended;
-	
+    public boolean extended;
+
     public void initDefaultCommand() {
-    	setDefaultCommand(new ManualDiscHolder());
+        setDefaultCommand(new ManualDiscHolder());
     }
-    
+
     public void shoot() {
-        if(!extended)
-        {
+        if(!extended) {
             piston.set(DoubleSolenoid.Value.kForward);
-            System.out.println(piston.get());
             extended = true;
         }
-       
     }
 
     public void retract() {
-        if(extended)
-        {
+        if(extended) {
             piston.set(DoubleSolenoid.Value.kReverse);
             extended = false;
         }
-        
     }
 
     public void stop() {

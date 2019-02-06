@@ -1,21 +1,19 @@
 package org.usfirst.frc.team3952.robot.commands;
 
-import org.usfirst.frc.team3952.robot.Robot;
+import edu.wpi.first.wpilibj.command.*;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
+import org.usfirst.frc.team3952.robot.*;
 
 public class ManualLadder extends Command {
-
-    public static boolean isMoving = false;
-
     public ManualLadder() {
         requires(Robot.ladder);
         setInterruptible(true);
     }
 
+    @Override
     protected void initialize() {}
 
+    @Override
     protected void execute() {
     	if(Robot.subController.extendLadder()) {
 			Robot.ladder.extend();
@@ -24,26 +22,19 @@ public class ManualLadder extends Command {
 		} else {
 			Robot.ladder.stop();
         }
-        
-        //change 5 for levels, if you do change the Controller config too
-        /*for(int i = 0; i < 5; i++)
-        {
-            if(Robot.mainController.goToLadder(i+1) && !isMoving)
-            {
-                Scheduler.getInstance().add(new MoveLadderToPos(i));
-                break;
-            }
-        }*/
     }
 
+    @Override
     protected boolean isFinished() {
         return false;
     }
 
+    @Override
     protected void end() {
     	Robot.ladder.stop();
     }
     
+    @Override
     protected void interrupted() {
     	Robot.ladder.stop();
     }
