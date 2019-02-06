@@ -1,10 +1,10 @@
+
 package org.usfirst.frc.team3952.robot;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.*;
 
 public class RobotMap {
-
 	//PWM
 	public static final int REAR_LEFT_WHEEL_PORT = 0;
 	public static final int REAR_RIGHT_WHEEL_PORT = 1;
@@ -14,24 +14,20 @@ public class RobotMap {
 	public static final int ROBOT_CLAW_ENABLER_PORT = 5;
 	
 	//DIO
-	//public static final int REAR_RIGHT_ENCODER_PORT_1 = 2;
-	//public static final int REAR_RIGHT_ENCODER_PORT_2 = 3;
-	//public static final int REAR_LEFT_ENCODER_PORT_1 = 0;
-	//public static final int REAR_LEFT_ENCODER_PORT_2 = 1;
-	
-	//blame electronics/mech for messing up left and right
 	public static final int FRONT_RIGHT_ENCODER_PORT_1 = 0;
 	public static final int FRONT_RIGHT_ENCODER_PORT_2 = 1;
 	public static final int FRONT_LEFT_ENCODER_PORT_1 = 2;
 	public static final int FRONT_LEFT_ENCODER_PORT_2 = 3;
-
+	//public static final int REAR_RIGHT_ENCODER_PORT_1 = 2;
+	//public static final int REAR_RIGHT_ENCODER_PORT_2 = 3;
+	//public static final int REAR_LEFT_ENCODER_PORT_1 = 0;
+	//public static final int REAR_LEFT_ENCODER_PORT_2 = 1;
 	public static final int LADDER_ENCODER_PORT_1 = 4;
 	public static final int LADDER_ENCODER_PORT_2 = 5;
 	public static final int LADDER_TOP_LIMIT_PORT = 6;
 	public static final int LADDER_BOTTOM_LIMIT_PORT = 7;
 
 	//PNEUMATIC BOARD (PCM)
-	
 	public static final int DISC_SOLENOID_PORT_1 = 0;
 	public static final int DISC_SOLENOID_PORT_2 = 1;
 	
@@ -74,10 +70,6 @@ public class RobotMap {
 		frontRightEncoder = new Encoder(FRONT_RIGHT_ENCODER_PORT_1, FRONT_RIGHT_ENCODER_PORT_2, false, Encoder.EncodingType.k1X);
 		frontRightEncoder.setDistancePerPulse(-0.007604813285879);
 
-		ladderTopLimit = new DigitalInput(LADDER_TOP_LIMIT_PORT);
-		ladderBottomLimit = new DigitalInput(LADDER_BOTTOM_LIMIT_PORT);
-
-
 		/*
 		rearLeftEncoder = new Encoder(REAR_LEFT_ENCODER_PORT_1, REAR_LEFT_ENCODER_PORT_2, false, Encoder.EncodingType.k1X);
 		rearLeftEncoder.setDistancePerPulse(-0.007266115676069);
@@ -85,6 +77,8 @@ public class RobotMap {
 		rearRightEncoder.setDistancePerPulse(-0.007604813285879);
 		*/
 
+		ladderTopLimit = new DigitalInput(LADDER_TOP_LIMIT_PORT);
+		ladderBottomLimit = new DigitalInput(LADDER_BOTTOM_LIMIT_PORT);
 
 		gyro = new ADXRS450_Gyro();
 		ladder = new PWMVictorSPX(LADDER_PORT);

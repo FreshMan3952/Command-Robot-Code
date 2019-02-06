@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3952.robot.commands;
 
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 
 import org.usfirst.frc.team3952.robot.*;
@@ -13,6 +14,9 @@ public class MoveLadderToPos extends Command {
     public double pos;
     public boolean dir;
     public int diff;
+
+    public DigitalInput topLimit = RobotMap.ladderTopLimit;
+    public DigitalInput bottomLimit = RobotMap.ladderBottomLimit;
 
     public MoveLadderToPos(int pos) {
         requires(Robot.ladder);
@@ -34,13 +38,11 @@ public class MoveLadderToPos extends Command {
             Robot.ladder.retract();
         }
         dir = (pos - Robot.ladder.encoder.getDistance()) > 0;
-
-       
     }
 
     @Override
     protected boolean isFinished() {
-        if(RobotMap.ladderTopLimit.get() || RobotMap.ladderBottomLimit.get()) {
+        if(topLimit.get() || bottomLimit.get()) {
             return true;
         }
         if(Math.abs(pos - Robot.ladder.encoder.getDistance()) < DELTA) {
