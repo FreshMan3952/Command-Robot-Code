@@ -12,32 +12,32 @@ public class ManualDrive extends Command {
         setInterruptible(true);
     }
 
+    @Override
     protected void initialize() {}
 
-    double rotateBy = 0;
-
+    @Override
     protected void execute() {
     	double hor = Robot.mainController.getHorizontalMovement();
     	double lat = Robot.mainController.getLateralMovement();
         double rot = Robot.mainController.getRotation();
-        
         Robot.drive.drive(hor, lat, rot);
         
-        if (Robot.subController.clawDeploy())
-            RobotMap.clawDeploy.setAngle(90);
-        else 
+        if (Robot.subController.resetClaw()) {
             RobotMap.clawDeploy.setAngle(0);
-		
+        }
     }
 
+    @Override
     protected boolean isFinished() {
         return false;
     }
 
+    @Override
     protected void end() {
     	Robot.drive.stop();
     }
 
+    @Override
     protected void interrupted() {
     	Robot.drive.stop();
     }
