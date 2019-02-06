@@ -11,7 +11,7 @@ import org.usfirst.frc.team3952.robot.*;
 public class MoveToWall extends Command { 
     //TODO: edit
     public static final double STOPPING_DISTANCE = 12.0;
-    public static final double SPEED = 0.5;
+    public static final double SPEED = 0.5; 
 
     public double v2in = 41.552765;
     public boolean finished = false;
