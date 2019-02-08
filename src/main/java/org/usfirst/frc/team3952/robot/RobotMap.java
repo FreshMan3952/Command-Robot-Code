@@ -1,10 +1,10 @@
-
 package org.usfirst.frc.team3952.robot;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.*;
 
 public class RobotMap {
+
 	//PWM
 	public static final int REAR_LEFT_WHEEL_PORT = 0;
 	public static final int REAR_RIGHT_WHEEL_PORT = 1;
@@ -45,7 +45,7 @@ public class RobotMap {
 	public static Encoder rearLeftEncoder;
 	public static Encoder rearRightEncoder;
 	public static ADXRS450_Gyro gyro;
-	public static PWMVictorSPX ladder;
+	public static Talon ladder;
 	public static Encoder ladderEncoder;
 	public static DigitalInput ladderTopLimit;
 	public static DigitalInput ladderBottomLimit;
@@ -53,8 +53,7 @@ public class RobotMap {
 	public static DoubleSolenoid discSolenoid;
 	public static AnalogInput qtiSensor;
 	public static AnalogInput ultrasonicSensor;
-	public static Servo clawDeploy;
-	public static DigitalInput limitSwitch;
+	public static Servo servo;
 	
 	
 	public static void init() {
@@ -63,7 +62,8 @@ public class RobotMap {
 		rearLeftWheel = new Talon(REAR_LEFT_WHEEL_PORT);
 		rearRightWheel = new Talon(REAR_RIGHT_WHEEL_PORT);
 		drive = new MecanumDrive(frontLeftWheel, frontRightWheel, rearLeftWheel, rearRightWheel);
-		clawDeploy = new Servo(ROBOT_CLAW_ENABLER_PORT);
+		servo = new Servo(ROBOT_CLAW_ENABLER_PORT);
+		gyro = new ADXRS450_Gyro();
 
 		frontLeftEncoder = new Encoder(FRONT_LEFT_ENCODER_PORT_1,FRONT_LEFT_ENCODER_PORT_2, false, Encoder.EncodingType.k1X);
 		frontLeftEncoder.setDistancePerPulse(-0.007266115676069);
@@ -77,12 +77,10 @@ public class RobotMap {
 		rearRightEncoder.setDistancePerPulse(-0.007604813285879);
 		*/
 
+		ladder = new Talon(LADDER_PORT);
+		ladderEncoder = new Encoder(LADDER_ENCODER_PORT_1, LADDER_ENCODER_PORT_2, false, Encoder.EncodingType.k2X);
 		ladderTopLimit = new DigitalInput(LADDER_TOP_LIMIT_PORT);
 		ladderBottomLimit = new DigitalInput(LADDER_BOTTOM_LIMIT_PORT);
-
-		gyro = new ADXRS450_Gyro();
-		ladder = new PWMVictorSPX(LADDER_PORT);
-		ladderEncoder = new Encoder(LADDER_ENCODER_PORT_1, LADDER_ENCODER_PORT_2, false, Encoder.EncodingType.k2X);
 		
 		discSolenoid = new DoubleSolenoid(DISC_SOLENOID_PORT_1, DISC_SOLENOID_PORT_2);
 		qtiSensor = new AnalogInput(QTI_SENSOR_PORT);

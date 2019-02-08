@@ -4,11 +4,10 @@ import edu.wpi.first.wpilibj.command.*;
 
 import org.usfirst.frc.team3952.robot.*;
 
-
-
 public class DeployClaw extends Command {
-    public boolean isFinished;
-    
+    public static final double DELTA = 2.5;
+
+    public boolean finished;
 
     public DeployClaw() {
         setInterruptible(false);
@@ -16,20 +15,20 @@ public class DeployClaw extends Command {
 
     @Override
     protected void initialize() {
-        isFinished = false;
+        finished = false;
     }
 
     @Override
     protected void execute() {
-        RobotMap.clawDeploy.setAngle(90.0);
-        if(RobotMap.clawDeploy.getAngle() == 90.0){
-            isFinished = true;
+        RobotMap.servo.setAngle(90.0);
+        if(Math.abs(RobotMap.servo.getAngle() - 90.0) < DELTA){
+            finished = true;
         }
     }
 
     @Override
     protected boolean isFinished() {
-        return isFinished;
+        return finished;
     }
 
     @Override
