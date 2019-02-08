@@ -3,10 +3,11 @@ package org.usfirst.frc.team3952.robot.commands;
 import org.usfirst.frc.team3952.robot.Robot;
 import org.usfirst.frc.team3952.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.*;
 
-public class ManualDrive extends Command {    
+public class ManualDrive extends Command { 
+    public static final double DELTA = 2.5;
+    
     public ManualDrive() {
         requires(Robot.drive);
         setInterruptible(true);
@@ -22,8 +23,10 @@ public class ManualDrive extends Command {
         double rot = Robot.mainController.getRotation();
         Robot.drive.drive(hor, lat, rot);
         
-        if (Robot.subController.resetClaw()) {
-            RobotMap.clawDeploy.setAngle(0);
+        if(Robot.subController.resetClaw()) {
+            RobotMap.servo.setAngle(0);
+        } else if(Robot.subController.deployClaw() && Math.abs(RobotMap.servo.getAngle()) < DELTA) {
+            Scheduler.getInstance().add(new DeployClaw());
         }
     }
 

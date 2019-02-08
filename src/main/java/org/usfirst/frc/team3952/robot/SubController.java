@@ -7,7 +7,8 @@ public class SubController {
                                      2,     // retract ladder
                                      3,     // grab disc
                                      4,     // release disc
-                                     5};    // reset claw
+                                     5,     // reset claw
+                                     8};    // deploy claw
     
     public Joystick joystick;
 
@@ -31,7 +32,16 @@ public class SubController {
         return joystick.getRawButton(MAP[3]);
     }
 
-    public boolean resetClaw(){
+    public boolean resetClaw() {
         return joystick.getRawButton(MAP[4]);
+    }
+
+    public boolean deployClaw() {
+        return joystick.getRawButton(MAP[5]);
+    }
+
+    public double getLateralMovement() {
+         return joystick.getY();
+        
     }
 }
