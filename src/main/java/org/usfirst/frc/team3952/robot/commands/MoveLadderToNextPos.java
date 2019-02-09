@@ -16,11 +16,13 @@ public class MoveLadderToNextPos extends Command {
                                                            700  //ball #3
                                                           };
     public static final int DELTA = 15;
+    public static final int MIN = 0;
+    public static final int MAX = 5;
 
     public double pos;
     public boolean dir;
     public int diff;
-    public boolean finished;
+    public boolean override;
 
     public Encoder encoder = Robot.ladder.encoder;
     public DigitalInput topLimit = RobotMap.ladderTopLimit;
@@ -35,9 +37,19 @@ public class MoveLadderToNextPos extends Command {
 
     @Override
     protected void initialize() {
-        if(Math.abs(encoder.getDistance() - pos) <= DELTA) {
-            finished = true;
+        double dist = encoder.getDistance();
+        if(dir) {
+            int position = MIN;
+            while(dist >= POSITIONS[position] && position < MAX) {
+                ++position;
+            }
+        } else {
+            int position = MAX;
+            while(dist <= POSITIONS[position] && position > MIN) {
+                --position;
+            }
         }
+        override |= Robot.subController.override();
     }
 
     @Override
@@ -51,7 +63,7 @@ public class MoveLadderToNextPos extends Command {
 
     @Override
     protected boolean isFinished() {
-        if(topLimit.get() || bottomLimit.get()) {
+        if(topLimit.get() || bottomLimit.get() || override) {
             return true;
         }
         return dir ? encoder.getDistance() >= pos : encoder.getDistance() <= pos;

@@ -3,18 +3,13 @@ package org.usfirst.frc.team3952.robot;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class SubController {
-    public static final int GRAB_DISC = 0;
-    public static final int RELEASE_DISC = 1;
-    public static final int RESET_CLAW = 2;
-    public static final int DEPLOY_CLAW = 3;
-    public static final int MOVE_LADDER_UP = 4;
-    public static final int MOVE_LADDER_DOWN = 5;
-    public static final int[] MAP = {3,     //grab disc
-                                     4,     //release disc
-                                     5,     //reset claw
-                                     8,     //deploy claw
-                                     3,     //move ladder up
-                                     2};    //move ladder down
+    public static final int GRAB_DISC = 3;
+    public static final int RELEASE_DISC = 4;
+    public static final int RESET_CLAW = 5;
+    public static final int DEPLOY_CLAW = 8;
+    public static final int MOVE_LADDER_UP = 3;
+    public static final int MOVE_LADDER_DOWN = 2;
+    public static final int OVERRIDE = 6;
     public static final double DELTA = 0.5;
     
     public Joystick joystick;
@@ -32,26 +27,30 @@ public class SubController {
     }
 
     public boolean grabDisc() {
-        return joystick.getRawButtonPressed(MAP[GRAB_DISC]);
+        return joystick.getRawButtonPressed(GRAB_DISC);
     }
 
     public boolean releaseDisc() {
-        return joystick.getRawButtonPressed(MAP[RELEASE_DISC]);
+        return joystick.getRawButtonPressed(RELEASE_DISC);
     }
 
     public boolean resetClaw() {
-        return joystick.getRawButtonPressed(MAP[RESET_CLAW]);
+        return joystick.getRawButtonPressed(RESET_CLAW);
     }
 
     public boolean deployClaw() {
-        return joystick.getRawButtonPressed(MAP[DEPLOY_CLAW]);
+        return joystick.getRawButtonPressed(DEPLOY_CLAW);
     }
 
     public boolean moveLadderUp() {
-        return joystick.getRawButtonPressed(MAP[MOVE_LADDER_UP]);
+        return joystick.getRawButtonPressed(MOVE_LADDER_UP);
     }
 
     public boolean moveLadderDown() {
-        return joystick.getRawButtonPressed(MAP[MOVE_LADDER_DOWN]);
+        return joystick.getRawButtonPressed(MOVE_LADDER_DOWN);
+    }
+
+    public boolean override() {
+        return joystick.getRawButtonPressed(OVERRIDE);
     }
 }
