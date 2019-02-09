@@ -19,7 +19,11 @@ public class ManualLadder extends Command {
 			Robot.ladder.extend();
         } else if(Robot.subController.retractLadder()) {
 			Robot.ladder.retract();
-		} else {
+		} else if(Robot.subController.moveLadderUp()) {
+            Scheduler.getInstance().add(new MoveLadderToNextPos(true));
+        } else if(Robot.subController.moveLadderDown()) {
+            Scheduler.getInstance().add(new MoveLadderToNextPos(false));
+        }else {
 			Robot.ladder.stop();
         }
     }

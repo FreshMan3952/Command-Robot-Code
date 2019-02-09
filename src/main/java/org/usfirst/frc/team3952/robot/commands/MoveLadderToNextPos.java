@@ -1,33 +1,43 @@
-/*package org.usfirst.frc.team3952.robot.commands;
+package org.usfirst.frc.team3952.robot.commands;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 
 import org.usfirst.frc.team3952.robot.*;
 
-public class MoveLadderToPos extends Command {
+public class MoveLadderToNextPos extends Command {
     public static final double TIMEOUT = 8.0;
     //TODO: edit
-    public static final int[] POSITIONS = new int[] {200, 300, 400, 500, 600, 700};
-    public static final double DELTA = 0.2;
+    public static final double[] POSITIONS = new double[] {200, //panel #1
+                                                           300, //ball #1
+                                                           400, //panel #2
+                                                           500, //ball #2
+                                                           600, //panel #3
+                                                           700  //ball #3
+                                                          };
+    public static final int DELTA = 15;
 
     public double pos;
     public boolean dir;
     public int diff;
+    public boolean finished;
 
+    public Encoder encoder = Robot.ladder.encoder;
     public DigitalInput topLimit = RobotMap.ladderTopLimit;
     public DigitalInput bottomLimit = RobotMap.ladderBottomLimit;
 
-    public MoveLadderToPos(int pos) {
+    public MoveLadderToNextPos(boolean dir) {
         requires(Robot.ladder);
         setTimeout(TIMEOUT);
         setInterruptible(false);
-        this.pos = POSITIONS[pos];
+        this.dir = dir;
     }
 
     @Override
     protected void initialize() {
-        dir = (pos - Robot.ladder.encoder.getDistance()) > 0;
+        if(Math.abs(encoder.getDistance() - pos) <= DELTA) {
+            finished = true;
+        }
     }
 
     @Override
@@ -37,7 +47,6 @@ public class MoveLadderToPos extends Command {
         } else {
             Robot.ladder.retract();
         }
-        dir = (pos - Robot.ladder.encoder.getDistance()) > 0;
     }
 
     @Override
@@ -45,10 +54,7 @@ public class MoveLadderToPos extends Command {
         if(topLimit.get() || bottomLimit.get()) {
             return true;
         }
-        if(Math.abs(pos - Robot.ladder.encoder.getDistance()) < DELTA) {
-            return true;
-        }
-        return false;
+        return dir ? encoder.getDistance() >= pos : encoder.getDistance() <= pos;
     }
 
     @Override
@@ -61,4 +67,3 @@ public class MoveLadderToPos extends Command {
         Robot.ladder.stop();
     }
 }
-*/
