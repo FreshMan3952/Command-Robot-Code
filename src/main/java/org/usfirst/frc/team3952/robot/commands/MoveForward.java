@@ -14,8 +14,8 @@ public class MoveForward extends Command {
 	public double distance;
 	public boolean finished;
 
-	public Encoder left = Robot.drive.frontLeft;
-	public Encoder right = Robot.drive.frontRight;
+	public Encoder left = Robot.drive.rearLeft;
+	public Encoder right = Robot.drive.rearRight;
 	
 	public MoveForward(double distance) {
 		requires(Robot.drive);

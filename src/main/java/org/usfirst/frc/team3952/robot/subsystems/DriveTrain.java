@@ -9,8 +9,8 @@ import org.usfirst.frc.team3952.robot.commands.*;
 
 public class DriveTrain extends Subsystem {
 	public MecanumDrive drive = RobotMap.drive;
-	public Encoder frontLeft = RobotMap.frontLeftEncoder;
-	public Encoder frontRight = RobotMap.frontRightEncoder;
+	public Encoder rearLeft = RobotMap.rearLeftEncoder;
+	public Encoder rearRight = RobotMap.rearRightEncoder;
 	public ADXRS450_Gyro gyro = RobotMap.gyro;
 
 	public void initDefaultCommand() {
