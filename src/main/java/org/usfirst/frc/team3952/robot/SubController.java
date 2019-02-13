@@ -28,30 +28,30 @@ public class SubController {
     }
 
     public boolean grabDisc() {
-        return joystick.getRawButton(GRAB_DISC);
+        return joystick.getRawButtonPressed(GRAB_DISC);
     }
 
     public boolean releaseDisc() {
-        return joystick.getRawButton(RELEASE_DISC);
+        return joystick.getRawButtonPressed(RELEASE_DISC);
     }
 
     public boolean resetClaw() {
-        return joystick.getRawButton(RESET_CLAW);
+        return joystick.getRawButtonPressed(RESET_CLAW);
     }
 
     public boolean deployClaw() {
-        return joystick.getRawButton(DEPLOY_CLAW);
+        return joystick.getRawButtonPressed(DEPLOY_CLAW);
     }
 
     public boolean moveLadderUp() {
-        return joystick.getRawButton(MOVE_LADDER_UP);
+        return joystick.getRawButtonPressed(MOVE_LADDER_UP);
     }
 
     public boolean moveLadderDown() {
-        return joystick.getRawButton(MOVE_LADDER_DOWN);
+        return joystick.getRawButtonPressed(MOVE_LADDER_DOWN);
     }
 
     public boolean override() {
-        return joystick.getRawButton(OVERRIDE);
+        return joystick.getRawButtonPressed(OVERRIDE);
     }
 }
