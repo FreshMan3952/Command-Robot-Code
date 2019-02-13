@@ -17,13 +17,16 @@ public class PneumaticsSystem extends Subsystem {
 
     public void shoot() {
         if(!extended) {
+            //System.out.println("Its software's fault");
             piston.set(DoubleSolenoid.Value.kForward);
             extended = true;
         }
     }
 
     public void retract() {
+        
         if(extended) {
+          
             piston.set(DoubleSolenoid.Value.kReverse);
             extended = false;
         }

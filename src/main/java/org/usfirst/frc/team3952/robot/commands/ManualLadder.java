@@ -16,9 +16,13 @@ public class ManualLadder extends Command {
     @Override
     protected void execute() {
     	if(Robot.subController.extendLadder()) {
-			Robot.ladder.extend();
+            Robot.ladder.extend();
+            //testing for value
+            System.out.println(RobotMap.ladderEncoder.get());
         } else if(Robot.subController.retractLadder()) {
-			Robot.ladder.retract();
+            Robot.ladder.retract();
+            //test for value
+            System.out.println(RobotMap.ladderEncoder.get());
 		} else if(Robot.subController.moveLadderUp()) {
             Scheduler.getInstance().add(new MoveLadderToNextPos(true));
         } else if(Robot.subController.moveLadderDown()) {
