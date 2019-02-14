@@ -18,15 +18,21 @@ public class MoveLadderToNextPos extends Command {
     public static final int DELTA = 15;
     public static final int MIN = 0;
     public static final int MAX = 5;
+    public static final double X_MAX = 1000;
+    public static final double V_MAX = 1.0;
+    public static final double V_MIN = 0.0;
+    public static final double K = 4 * (V_MAX - V_MIN) / X_MAX / X_MAX / Math.log(3952 * X_MAX + 1);
 
-    public double pos;
     public boolean dir;
-    public int diff;
     public boolean override;
+    public double init;
+    public double curr;
+    public double dest;
+    public double spd;
 
     public Encoder encoder = Robot.ladder.encoder;
-    public DigitalInput topLimit = RobotMap.ladderTopLimit;
-    public DigitalInput bottomLimit = RobotMap.ladderBottomLimit;
+    //public DigitalInput topLimit = RobotMap.ladderTopLimit;
+    //public DigitalInput bottomLimit = RobotMap.ladderBottomLimit;
 
     public MoveLadderToNextPos(boolean dir) {
         requires(Robot.ladder);
@@ -37,36 +43,36 @@ public class MoveLadderToNextPos extends Command {
 
     @Override
     protected void initialize() {
-        double dist = encoder.getDistance();
+        curr = init = encoder.getDistance();
         if(dir) {
             int position = MIN;
-            while(dist >= POSITIONS[position] && position < MAX) {
+            while(init >= POSITIONS[position] && position < MAX) {
                 ++position;
             }
+            dest = POSITIONS[Math.min(position - 1, MIN)];
         } else {
             int position = MAX;
-            while(dist <= POSITIONS[position] && position > MIN) {
+            while(init <= POSITIONS[position] && position > MIN) {
                 --position;
             }
+            dest = POSITIONS[Math.min(position + 1, MAX)];
         }
-        override |= Robot.subController.override();
+        spd = Math.log(3952 * (dest - init) + 1);
     }
 
     @Override
     protected void execute() {
-        if(dir) {
-            Robot.ladder.extend();
-        } else {
-            Robot.ladder.retract();
-        }
+        curr =  encoder.getDistance();
+        Robot.ladder.set(K * spd * (dest - curr) * (curr - init) + V_MIN);
+        override |= Robot.subController.override();
     }
 
     @Override
     protected boolean isFinished() {
-        if(topLimit.get() || bottomLimit.get() || override) {
-            return true;
-        }
-        return dir ? encoder.getDistance() >= pos : encoder.getDistance() <= pos;
+        //if(topLimit.get() || bottomLimit.get() || override) {
+        //    return true;
+        //}
+        return dir ? curr >= dest : curr <= dest;
     }
 
     @Override
