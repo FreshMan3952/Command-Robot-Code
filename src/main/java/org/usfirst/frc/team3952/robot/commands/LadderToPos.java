@@ -1,4 +1,4 @@
-/*package org.usfirst.frc.team3952.robot.commands;
+package org.usfirst.frc.team3952.robot.commands;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
@@ -34,24 +34,22 @@ public class LadderToPos extends Command {
     @Override
     protected void initialize() {
         stickPressed = false;
-        level = 1;
+        level = 0;
     }
 
     @Override
     protected void execute() {
-        if ( Robot.subController.getLateralMovement() > 0.5 && stickPressed == false && level < 6 ){
+        if ( Robot.subController.moveLadderDown() && level < 6 ){
             level ++;
             stickPressed = true;
-        }else if ( Robot.subController.getLateralMovement() < -0.5 && stickPressed == false && level > 1 ){
+        }else if ( Robot.subController.moveLadderDown() && level > 1 ){
             level --;
             stickPressed = true;
-        }else if( 0 - Math.abs(Robot.subController.getLateralMovement() ) < 0.15) {
-            stickPressed = false;
         }
 
-        if ( POSITIONS[level - 1] > 10 - Math.abs(0 - encoder.getDistance()) && !topLimit.get()){
+        if ( POSITIONS[level - 1] > 10 - Math.abs(0 - encoder.getDistance()) ){
             Robot.ladder.extend();
-        } else if (POSITIONS[level - 1] < 10 - Math.abs(0-encoder.getDistance()) && !bottomLimit.get() ){
+        } else if (POSITIONS[level] < 10 - Math.abs(0-encoder.getDistance()) ){
             Robot.ladder.retract();
         }else Robot.ladder.stop();
     }
@@ -71,4 +69,3 @@ public class LadderToPos extends Command {
         Robot.ladder.stop();
     }
 }
-*/

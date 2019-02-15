@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.*;
 import edu.wpi.first.networktables.*;
 
 import org.usfirst.frc.team3952.robot.subsystems.*;
-import org.usfirst.frc.team3952.robot.commands.*;
+
 
 public class Robot extends TimedRobot {
 	public static Controller mainController;
@@ -44,7 +44,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		Scheduler.getInstance().add(new DeployClaw());
+		
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		Scheduler.getInstance().add(new DeployClaw());
+		
 		
 	}
 

@@ -6,11 +6,10 @@ public class SubController {
     //require update
     public static final int GRAB_DISC = 3;
     public static final int RELEASE_DISC = 4;
-    public static final int RESET_CLAW = 5;
     public static final int DEPLOY_CLAW = 8;
-    public static final int MOVE_LADDER_UP = 10;
-    public static final int MOVE_LADDER_DOWN = 2;
-    public static final int OVERRIDE = 6;
+    public static final int MOVE_LADDER_UP = 6;
+    public static final int MOVE_LADDER_DOWN = 7;
+    public static final int OVERRIDE = 19999;
     public static final double DELTA = 0.5;
     
     public Joystick joystick;
@@ -35,12 +34,8 @@ public class SubController {
         return joystick.getRawButtonPressed(RELEASE_DISC);
     }
 
-    public boolean resetClaw() {
-        return joystick.getRawButtonPressed(RESET_CLAW);
-    }
-
     public boolean deployClaw() {
-        return joystick.getRawButtonPressed(DEPLOY_CLAW);
+        return joystick.getRawButton(DEPLOY_CLAW);
     }
 
     public boolean moveLadderUp() {

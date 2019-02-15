@@ -23,14 +23,10 @@ public class ManualLadder extends Command {
             Robot.ladder.retract();
             //test for value
             System.out.println(RobotMap.ladderEncoder.get());
-		} else if(Robot.subController.moveLadderUp()) {
-            Scheduler.getInstance().add(new MoveLadderToNextPos(true));
-        } else if(Robot.subController.moveLadderDown()) {
-            Scheduler.getInstance().add(new MoveLadderToNextPos(false));
-        }else {
+		} 
 			Robot.ladder.stop();
-        }
     }
+    
 
     @Override
     protected boolean isFinished() {

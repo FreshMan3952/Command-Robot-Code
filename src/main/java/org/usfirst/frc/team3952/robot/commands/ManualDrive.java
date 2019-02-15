@@ -23,11 +23,10 @@ public class ManualDrive extends Command {
         double rot = Robot.mainController.getRotation();
         Robot.drive.drive(hor, lat, rot);
         
-        if(Robot.subController.resetClaw()) {
-            RobotMap.servo.setAngle(0);
-        } else if(Robot.subController.deployClaw() && Math.abs(RobotMap.servo.getAngle()) < DELTA) {
-            Scheduler.getInstance().add(new DeployClaw());
-        }
+        if (Robot.subController.deployClaw()){
+            RobotMap.servo.setAngle(90);
+        } else RobotMap.servo.setAngle(0);
+       
     }
 
     @Override
